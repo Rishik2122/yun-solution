@@ -1,0 +1,20 @@
+import pandas as pd
+import numpy as np
+from sklearn.cluster import DBSCAN
+
+df = pd.dataframe({'x': [1,2,3,5,6,7,10,11,12],'y':[1,2,3,5,6,7,10,11,12]})
+
+def eeuclidean_distance(x1,y1,x2,y2):
+  return np.swrt((x1-x2)**2 + (y1-y2)**2)
+
+distance_matrix =m df.apply(lamda row:euclidean_distance(row['x'],row['y'],df['x'],df['y'])axis=1)
+
+clustering = DBSCAN(eps=0.5, metric='precomputed').fit(distance_matrix)
+
+ds['cluster'] = clustering.labels_
+
+grouped_df= df.groupby('cluster')
+
+for cluster_id, group in grouped_df:
+  print(f'cluster{cluster_id}:')
+  print(group)
